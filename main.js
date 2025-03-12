@@ -21,7 +21,7 @@ function toScientificNotation(value) {
     return value.toExponential(5);
 };
 
-//Handle calculation
+// Handle calculation
 function operate(op, num1, num2){
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
@@ -42,7 +42,7 @@ function operate(op, num1, num2){
     };
 };
 
-//Handle number buttons
+// Handle number buttons
 numbers.forEach(number => {
     number.addEventListener('click', (e) => {
         let value = e.target.textContent;
@@ -61,7 +61,7 @@ numbers.forEach(number => {
     });
 });
 
-//Handle operator buttons
+// Handle operator buttons
 operators.forEach(operator => {
     operator.addEventListener('click', (e) => {
         let value = e.target.textContent;
@@ -92,7 +92,7 @@ equals.addEventListener('click', () => {
     };
 });
 
-//Handle clear button
+// Handle clear button
 clear.addEventListener('click', () => {
     num1 = '';
     num2 = '';
@@ -100,7 +100,7 @@ clear.addEventListener('click', () => {
     display.textContent = '0';
 });
 
-//Handle negative button
+// Handle negative button
 negative.addEventListener('click', () => {
     if (op === ''){
         num1 = (parseFloat(num1) * -1);
@@ -111,7 +111,7 @@ negative.addEventListener('click', () => {
     }
 });
 
-//Handle decimal button
+// Handle decimal button
 decimal.addEventListener('click', () => {
     if (op === ''){
         if (!num1.includes('.')){
@@ -126,12 +126,12 @@ decimal.addEventListener('click', () => {
     }
 });
 
-//Handle percent button
+// Handle percent button
 percent.addEventListener('click', () => {
     if (num2 !== ''){
         // Calculate num2 as a percentage of num1 (num1 + num1 * (num2 / 100))
         result = parseFloat(num1) + (parseFloat(num1) * (parseFloat(num2) / 100));
-        if (result.toString().length > maxDigits) { //Convert to string because numbers don't have .length property
+        if (result.toString().length > maxDigits) { // Convert to string because numbers don't have .length property
             display.textContent = toScientificNotation(result);
         } else {
             display.textContent = result;
@@ -142,7 +142,7 @@ percent.addEventListener('click', () => {
     } else if (num1 !== ''){
         // Calculate num1 as a percentage of 100 (num1 / 100)
         result = (parseFloat(num1) / 100);
-        if (result.toString().length > maxDigits) { //Convert to string because numbers don't have .length property
+        if (result.toString().length > maxDigits) { // Convert to string because numbers don't have .length property
             display.textContent = toScientificNotation(result);
         } else {
             display.textContent = result;
