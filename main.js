@@ -114,14 +114,14 @@ decimal.addEventListener('click', () => {
 //Handle percent button
 percent.addEventListener('click', () => {
     if (num2 !== ''){
-        // Calculate num2 as a percentage of num1 (e.g., num1 * (num2 / 100))
-        result = (parseFloat(num1) * (parseFloat(num2) / 100));
+        // Calculate num2 as a percentage of num1 (num1 + num1 * (num2 / 100))
+        result = parseFloat(num1) + (parseFloat(num1) * (parseFloat(num2) / 100));
         display.textContent = result;
         num1 = result;
         num2 = '';
         op = '';
     } else if (num1 !== ''){
-        // Calculate num1 as a percentage of 100 (e.g., num1 / 100)
+        // Calculate num1 as a percentage of 100 (num1 / 100)
         result = (parseFloat(num1) / 100);
         display.textContent = result;
         num1 = result;
