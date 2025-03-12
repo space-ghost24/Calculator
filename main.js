@@ -42,3 +42,18 @@ numbers.forEach(number => {
         }
     });
 });
+
+operators.forEach(operator => {
+    operator.addEventListener('click', (e) => {
+        let value = e.target.textContent;
+
+        if (num1 !== '' && num2 !== ''){
+            result = operate(op, num1, num2);
+            display.textContent = result;
+            num1 = result;
+            num2 = '';
+        }
+
+        op = value;
+    });
+});
