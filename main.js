@@ -9,6 +9,7 @@ let num2 = '';
 let op = '';
 let result;
 
+//Handle calculation
 function operate(op, num1, num2){
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
@@ -29,6 +30,7 @@ function operate(op, num1, num2){
     };
 };
 
+//Handle number buttons
 numbers.forEach(number => {
     number.addEventListener('click', (e) => {
         let value = e.target.textContent;
@@ -43,6 +45,7 @@ numbers.forEach(number => {
     });
 });
 
+//Handle operator buttons
 operators.forEach(operator => {
     operator.addEventListener('click', (e) => {
         let value = e.target.textContent;
@@ -56,4 +59,15 @@ operators.forEach(operator => {
 
         op = value;
     });
+});
+
+// Handle Equals button
+equals.addEventListener('click', () => {
+    if (num1 !== '' && num2 !== ''){
+        result = operate(op, num1, num2);
+        display.textContent = result;
+        num1 = result;
+        num2 = '';
+        op == '';
+    };
 });
