@@ -4,6 +4,7 @@ const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
 const clear = document.querySelector('.clear');
 const negative = document.querySelector('.negative');
+const decimal = document.querySelector('.decimal');
 
 let num1 = '';
 let num2 = '';
@@ -89,5 +90,20 @@ negative.addEventListener('click', () => {
     } else {
         num2 = (parseFloat(num2) * -1);
         display.textContent = num2;
+    }
+});
+
+//Handle decimal button
+decimal.addEventListener('click', () => {
+    if (op === ''){
+        if (!num1.includes('.')){
+            num1 += '.';
+            display.textContent = num1;
+        }
+    } else {
+        if (!num2.includes('.')){
+            num2 += '.';
+            display.textContent = num2;
+        }
     }
 });
