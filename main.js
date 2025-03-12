@@ -5,11 +5,14 @@ const equals = document.querySelector('.equals');
 const clear = document.querySelector('.clear');
 const negative = document.querySelector('.negative');
 const decimal = document.querySelector('.decimal');
+const percent = document.querySelector('.percent');
 
 let num1 = '';
 let num2 = '';
 let op = '';
 let result;
+
+display.textContent = '0';
 
 //Handle calculation
 function operate(op, num1, num2){
@@ -70,7 +73,7 @@ equals.addEventListener('click', () => {
         display.textContent = result;
         num1 = result;
         num2 = '';
-        op == '';
+        op = '';
     };
 });
 
@@ -105,5 +108,24 @@ decimal.addEventListener('click', () => {
             num2 += '.';
             display.textContent = num2;
         }
+    }
+});
+
+//Handle percent button
+percent.addEventListener('click', () => {
+    if (num2 !== ''){
+        // Calculate num2 as a percentage of num1 (e.g., num1 * (num2 / 100))
+        result = (parseFloat(num1) * (parseFloat(num2) / 100));
+        display.textContent = result;
+        num1 = result;
+        num2 = '';
+        op = '';
+    } else if (num1 !== ''){
+        // Calculate num1 as a percentage of 100 (e.g., num1 / 100)
+        result = (parseFloat(num1) / 100);
+        display.textContent = result;
+        num1 = result;
+        num2 = '';
+        op = '';
     }
 });
