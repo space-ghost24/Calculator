@@ -71,3 +71,11 @@ equals.addEventListener('click', () => {
         op == '';
     };
 });
+
+//Handle clear button
+clear.addEventListener('click', () => {
+    num1 = '';
+    num2 = '';
+    op = '';
+    display.textContent = '';
+});
