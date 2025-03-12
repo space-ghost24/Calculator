@@ -14,6 +14,13 @@ let result;
 
 display.textContent = '0';
 
+const maxDigits = 9;
+
+// Convert result to scientific notation with 5 significant digits
+function toScientificNotation(value) {
+    return value.toExponential(5);
+};
+
 //Handle calculation
 function operate(op, num1, num2){
     num1 = parseFloat(num1);
@@ -41,11 +48,15 @@ numbers.forEach(number => {
         let value = e.target.textContent;
 
         if (op === ''){
-            num1 += value;
-            display.textContent = num1;
+            if (num1.length < maxDigits){
+                num1 += value;
+                display.textContent = num1;
+            }           
         } else {
-            num2 += value;
-            display.textContent = num2;
+            if (num2.length < maxDigits){
+                num2 += value;
+                display.textContent = num2;
+            }          
         }
     });
 });
@@ -70,7 +81,11 @@ operators.forEach(operator => {
 equals.addEventListener('click', () => {
     if (num1 !== '' && num2 !== ''){
         result = operate(op, num1, num2);
-        display.textContent = result;
+        if (result.toString().length > maxDigits){
+            display.textContent = toScientificNotation(result);
+        } else {
+            display.textContent = result;
+        }
         num1 = result;
         num2 = '';
         op = '';
@@ -82,7 +97,7 @@ clear.addEventListener('click', () => {
     num1 = '';
     num2 = '';
     op = '';
-    display.textContent = '';
+    display.textContent = '0';
 });
 
 //Handle negative button
@@ -116,14 +131,22 @@ percent.addEventListener('click', () => {
     if (num2 !== ''){
         // Calculate num2 as a percentage of num1 (num1 + num1 * (num2 / 100))
         result = parseFloat(num1) + (parseFloat(num1) * (parseFloat(num2) / 100));
-        display.textContent = result;
+        if (result.toString().length > maxDigits) { //Convert to string because numbers don't have .length property
+            display.textContent = toScientificNotation(result);
+        } else {
+            display.textContent = result;
+        }
         num1 = result;
         num2 = '';
         op = '';
     } else if (num1 !== ''){
         // Calculate num1 as a percentage of 100 (num1 / 100)
         result = (parseFloat(num1) / 100);
-        display.textContent = result;
+        if (result.toString().length > maxDigits) { //Convert to string because numbers don't have .length property
+            display.textContent = toScientificNotation(result);
+        } else {
+            display.textContent = result;
+        }
         num1 = result;
         num2 = '';
         op = '';
