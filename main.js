@@ -3,6 +3,7 @@ const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
 const clear = document.querySelector('.clear');
+const negative = document.querySelector('.negative');
 
 let num1 = '';
 let num2 = '';
@@ -24,7 +25,7 @@ function operate(op, num1, num2){
         case '/':
             if (num2 === 0){
                 return 'you died'
-            }else{
+            } else {
                 return num1 / num2;
             };
     };
@@ -35,10 +36,10 @@ numbers.forEach(number => {
     number.addEventListener('click', (e) => {
         let value = e.target.textContent;
 
-        if(op === ''){
+        if (op === ''){
             num1 += value;
             display.textContent = num1;
-        }else{
+        } else {
             num2 += value;
             display.textContent = num2;
         }
@@ -78,4 +79,15 @@ clear.addEventListener('click', () => {
     num2 = '';
     op = '';
     display.textContent = '';
+});
+
+//Handle negative button
+negative.addEventListener('click', () => {
+    if (op === ''){
+        num1 = (parseFloat(num1) * -1);
+        display.textContent = num1;
+    } else {
+        num2 = (parseFloat(num2) * -1);
+        display.textContent = num2;
+    }
 });
