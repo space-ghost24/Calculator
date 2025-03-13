@@ -58,3 +58,7 @@ button{
 button:hover{
     background-color:rgb(223, 239, 253);
 }
+
+.operator.active{
+    background-color: rgb(223, 239, 253);
+}

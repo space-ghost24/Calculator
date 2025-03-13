@@ -66,6 +66,10 @@ operators.forEach(operator => {
     operator.addEventListener('click', (e) => {
         let value = e.target.textContent;
 
+        operators.forEach(btn => btn.classList.remove('active'));
+
+        e.target.classList.add('active');
+
         if (num1 !== '' && num2 !== ''){
             result = operate(op, num1, num2);
             display.textContent = result;
@@ -90,6 +94,7 @@ equals.addEventListener('click', () => {
         num2 = '';
         op = '';
     };
+    operators.forEach(btn => btn.classList.remove('active'));
 });
 
 // Handle clear button
