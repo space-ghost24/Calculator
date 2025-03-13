@@ -110,6 +110,7 @@ clear.addEventListener('click', () => {
     num2 = '';
     op = '';
     display.textContent = '0';
+    operators.forEach(btn => btn.classList.remove('active'));
 });
 
 // Handle negative button
@@ -145,28 +146,18 @@ decimal.addEventListener('click', () => {
 });
 
 // Handle percent button
+function inputPercent(num) {
+    return num * 0.01; // Convert number to percentage (num * 0.01)
+}
+
 percent.addEventListener('click', () => {
-    if (num2 !== ''){
-        // Calculate num2 as a percentage of num1 (num1 + num1 * (num2 / 100))
-        result = parseFloat(num1) + (parseFloat(num1) * (parseFloat(num2) / 100));
-        if (result.toString().length > maxDigits) { // Convert to string because numbers don't have .length property
-            display.textContent = toScientificNotation(result);
-        } else {
-            display.textContent = result;
-        }
-        num1 = result;
-        num2 = '';
-        op = '';
-    } else if (num1 !== ''){
-        // Calculate num1 as a percentage of 100 (num1 / 100)
-        result = (parseFloat(num1) / 100);
-        if (result.toString().length > maxDigits) { // Convert to string because numbers don't have .length property
-            display.textContent = toScientificNotation(result);
-        } else {
-            display.textContent = result;
-        }
-        num1 = result;
-        num2 = '';
-        op = '';
+    if (op && num2 !== '') {
+        // Apply percentage to num2 (10% of num2)
+        num2 = inputPercent(parseFloat(num2));
+        display.textContent = num2;
+    } else if (num1 !== '') {
+        // If no operator, apply percentage to num1
+        num1 = inputPercent(parseFloat(num1));
+        display.textContent = num1;
     }
 });
