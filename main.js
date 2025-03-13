@@ -125,6 +125,12 @@ negative.addEventListener('click', () => {
 
 // Handle decimal button
 decimal.addEventListener('click', () => {
+    
+    if (num1 === ''){
+        num1 = '0.'
+        display.textContent = num1;
+    }
+
     if (op === ''){
         if (num1 !== '' && !num1.includes('.')){
             num1 += '.';
