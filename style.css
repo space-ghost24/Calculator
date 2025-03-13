@@ -61,4 +61,5 @@ button:hover{
 
 .operator.active{
     background-color: rgb(223, 239, 253);
+    border: 1px dashed rgb(43, 109, 231);
 }

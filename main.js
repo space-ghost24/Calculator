@@ -14,7 +14,7 @@ let result;
 
 display.textContent = '0';
 
-const maxDigits = 9;
+const maxDigits = 9; // Calculator only holds 9 digits
 
 // Convert result to scientific notation with 5 significant digits
 function toScientificNotation(value) {
@@ -47,6 +47,11 @@ numbers.forEach(number => {
     number.addEventListener('click', (e) => {
         let value = e.target.textContent;
 
+        //If an operation was completed, reset num1 and start fresh
+        if (num1 !== '' && num2 === '' && op === ''){
+            num1 = ''; //Clear num1 so that new numbers replace it
+        }
+
         if (op === ''){
             if (num1.length < maxDigits){
                 num1 += value;
@@ -65,6 +70,13 @@ numbers.forEach(number => {
 operators.forEach(operator => {
     operator.addEventListener('click', (e) => {
         let value = e.target.textContent;
+
+        // If same operator is pressed twice it gets deselected
+        if (op === value && e.target.classList.contains('active')) {
+            e.target.classList.remove('active');
+            op = '';
+            return;
+        }
 
         operators.forEach(btn => btn.classList.remove('active'));
 
@@ -119,12 +131,12 @@ negative.addEventListener('click', () => {
 // Handle decimal button
 decimal.addEventListener('click', () => {
     if (op === ''){
-        if (!num1.includes('.')){
+        if (num1 !== '' && !num1.includes('.')){
             num1 += '.';
             display.textContent = num1;
         }
     } else {
-        if (!num2.includes('.')){
+        if (num2 !== '' && !num2.includes('.')){
             num2 += '.';
             display.textContent = num2;
         }
