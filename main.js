@@ -47,11 +47,6 @@ numbers.forEach(number => {
     number.addEventListener('click', (e) => {
         let value = e.target.textContent;
 
-        //If an operation was completed, reset num1 and start fresh
-        if (num1 !== '' && num2 === '' && op === ''){
-            num1 = ''; //Clear num1 so that new numbers replace it
-        }
-
         if (op === ''){
             if (num1.length < maxDigits){
                 num1 += value;
